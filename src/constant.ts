@@ -1,64 +1,29 @@
-export const summary = 'IoT Hardware Engineer & Fullstack Web Developer from IPB University. Specialized in developing real-time monitoring systems using ESP32, IoT sensors, and cloud integration. Proficient in React, Next.js, Node.js, Express, Laravel, and modern web technologies. Experienced in building end-to-end solutions from embedded systems to responsive web dashboards. Currently interning at PT Global Energi Lestari while pursuing Dicoding Fullstack Developer certification with DBS Foundation.'
+export const summary = 'A 6th-semester Computer Engineering Technology student at IPB University with strong interest in web development and IT systems. Experienced in developing and maintaining web-based applications, including frontend, backend, and database integration. Also skilled in application support, troubleshooting, and basic software testing (SIT/UAT). Able to collaborate in teams and adapt quickly in dynamic environments, with a strong willingness to learn and contribute to IT operations and development projects.'
 
 export const workExperince = [
     {
-        jobTitle: 'Intern – IT Support & Development',
+        jobTitle: 'Internship – IT Support and Development',
         company: 'PT Global Energi Lestari',
-        startDate: 'Jan 2026',
-        endDate: 'Jul 2026',
+        startDate: 'January 2026',
+        endDate: 'July 2026',
         status: 'Internship',
-        description: 'Developing web interfaces using HTML, CSS, JavaScript. Designing UI/UX. Managing and processing data with SQL. Providing technical support and system troubleshooting.'
+        description: 'Maintained and monitored ERP systems and web-based applications to ensure stable performance and support business operations. Developed and enhanced web application features using Laravel, Blade Template, HTML, CSS, and JavaScript to improve functionality and user experience. Assisted in updating application features, UI components, and system content based on business requirements. Managed and validated application data using SQL to ensure data accuracy, integrity, and consistency. Provided first-level support by troubleshooting application and system issues, while documenting and following up incidents with internal teams. Collaborated with developers and cross-functional teams to improve system performance, usability, and operational efficiency.'
     },
     {
         jobTitle: 'Fullstack Web Developer',
         company: 'Dicoding Coding Camp 2026 x DBS Foundation',
-        startDate: 'Feb 2026',
-        endDate: 'Jul 2026',
+        startDate: 'February 2026',
+        endDate: 'July 2026',
         status: 'Program',
-        description: 'JavaScript Fundamentals, Front-End Development, Back-End Development, React Development, Cloud Computing AWS, System Integration.'
-    },
-    {
-        jobTitle: 'Frontend Developer',
-        company: 'Pasarpolis Indonesia',
-        startDate: 'Dec 2024',
-        endDate: 'Present',
-        status: 'Fulltime'
-    },
-    {
-        jobTitle: 'Frontend Developer',
-        company: 'Pasarpolis Indonesia',
-        startDate: 'Jun 2024',
-        endDate: 'Dec 2024',
-        status: 'Internship'
-    },
-    {
-        jobTitle: 'Technical Support Staff',
-        company: 'PT Profaskes Softech Indonesia',
-        startDate: 'Jan 2023',
-        endDate: 'Jun 2024',
-        status: 'Fulltime'
-    },
-    {
-        jobTitle: 'Android Developer',
-        company: 'Satpol PP Kolaka Timur',
-        startDate: 'Nov 2023',
-        endDate: 'Jan 2024',
-        status: 'Freelance'
-    },
-    {
-        jobTitle: 'Junior ERP Support',
-        company: 'PT Hashmicro Solusi Indonesia',
-        startDate: 'Feb 2022',
-        endDate: 'Jun 2022',
-        status: 'Internship'
+        description: 'Developed responsive and interactive web applications using React and JavaScript. Built backend systems and REST APIs for authentication and efficient data processing. Managed and integrated databases (MySQL, Firebase/Supabase) to ensure reliable application functionality. Collaborated in fullstack development projects to ensure seamless integration between frontend, backend, and deployment. Performed debugging, troubleshooting, and testing (SIT/UAT) to maintain application performance and reliability. Applied SDLC principles and basic cloud deployment using AWS. Actively learned and applied modern web development practices in a collaborative, project-based environment.'
     },
     {
         jobTitle: 'Student - Computer Engineering Technology',
         company: 'IPB University',
-        startDate: 'Aug 2019',
+        startDate: '2023',
         endDate: 'Present',
         status: 'Student',
-        description: 'GPA: 3.46. Focus on IoT, Fullstack Web Development, and Networking.'
+        description: 'Focus on Hardware-Software Integration, Embedded Systems, and IoT Development. GPA: 3.46.'
     },
 ]
 
@@ -66,8 +31,13 @@ export const projects = [
     {
         title: 'BudgetLy',
         image: '/budgetly.png',
-        description: 'Student financial management web application with AI-powered insights. Features expense tracking, budgeting, savings tracking, and spending predictions.',
-        technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
+        description: 'Financial management web application for students.',
+        technologies: ['React', 'TypeScript', 'REST API', 'PostgreSQL', 'Tailwind CSS'],
+        details: [
+            { label: 'Keterangan', text: 'Aplikasi web finansial untuk membantu pencatatan transaksi, budgeting, dan savings management.' },
+            { label: 'Teknologi', text: 'React dan TypeScript untuk antarmuka, REST API untuk integrasi data, PostgreSQL untuk penyimpanan, dan Tailwind CSS untuk styling.' },
+            { label: 'Tujuan', text: 'Membantu pengguna mengelola keuangan pribadi secara lebih terstruktur dan mudah dipantau.' },
+        ],
         links: [
             { text: 'Live Demo', url: 'https://budgetly-dbs.vercel.app/' },
             { text: 'GitHub', url: '#' }
@@ -76,8 +46,13 @@ export const projects = [
     {
         title: 'BuahKita',
         image: '/buahkita.png',
-        description: 'IoT-based fruit quality detection system with real-time monitoring. Integrates ESP32 sensors for temperature, humidity, and quality analysis.',
-        technologies: ['ESP32', 'React', 'Node.js', 'Firebase', 'Arduino IDE'],
+        description: 'IoT-based fruit quality detection system with real-time monitoring.',
+        technologies: ['ESP32', 'React', 'Node.js', 'PostgreSQL', 'Arduino IDE'],
+        details: [
+            { label: 'Keterangan', text: 'Sistem IoT untuk memantau kualitas buah secara real time melalui sensor dan dashboard web.' },
+            { label: 'Teknologi', text: 'ESP32 membaca sensor, React menampilkan data, Node.js menjadi backend, dan Firebase dipakai untuk penyimpanan serta sinkronisasi data.' },
+            { label: 'Tujuan', text: 'Memberikan gambaran kondisi buah dari data sensor agar proses pemantauan lebih cepat dan konsisten.' },
+        ],
         links: [
             { text: 'Live Demo', url: 'https://buahkita.vercel.app/' },
             { text: 'GitHub', url: '#' }
@@ -86,42 +61,32 @@ export const projects = [
     {
         title: 'Semanan Care',
         image: '/semanan.png',
-        description: 'Community issue monitoring system for kelurahan operations. Helps residents report problems, track status updates, and support faster coordination with local administrators.',
+        description: 'Community issue monitoring system for kelurahan operations.',
         technologies: ['React', 'Node.js', 'Express', 'MySQL', 'Tailwind CSS'],
+        details: [
+            { label: 'Keterangan', text: 'Sistem pelaporan masalah lingkungan dan operasional kelurahan yang bisa digunakan warga dan admin.' },
+            { label: 'Teknologi', text: 'React untuk frontend, Node.js dan Express untuk server, MySQL untuk data laporan, dan Tailwind CSS untuk tampilan.' },
+            { label: 'Tujuan', text: 'Memudahkan warga melapor dan membantu pihak terkait memantau status penanganan dengan lebih rapi.' },
+        ],
         links: [
             { text: 'Live Demo', url: '#' },
             { text: 'GitHub', url: '#' }
         ]
     },
     {
-        title: 'Medqueue',
-        image: '/medqueue.png',
-        description: 'Medical online queue service. Seamless appointment scheduling eliminating long wait times. Features real-time queue management and notification system.',
-        technologies: ['TypeScript', 'React', 'Tailwind CSS', 'Shadcn UI'],
+        title: 'TOMATGUARD',
+        image: '/tomatguard.svg',
+        description: 'IoT-based tomato plant monitoring system with real-time dashboard.',
+        technologies: ['ESP32', 'React', 'Node.js', 'YOLOv8', 'Random Forest'],
+        details: [
+            { label: 'Keterangan', text: 'Dashboard web untuk memantau data lingkungan dan kondisi tanaman tomat secara real time.' },
+            { label: 'Teknologi', text: 'ESP32 dan kamera digunakan untuk monitoring, backend API untuk pengolahan data, serta YOLOv8 dan Random Forest untuk analisis kondisi tanaman.' },
+            { label: 'Tujuan', text: 'Membantu pemantauan pertumbuhan tanaman dan memperkirakan kondisi tanaman berdasarkan data yang dikumpulkan.' },
+        ],
         links: [
-            { text: 'GitHub', url: 'https://github.com/Medqueue-Alta/Medqueue-FE' }
+            { text: 'GitHub', url: '#' }
         ]
     },
-    {
-        title: 'Gakda Sorume Koltim',
-        image: '/gakdaSorumeKoltim.png',
-        description: 'Law violation reporting mobile app for East Kolaka citizens. Enables civil police units to respond promptly to community reports.',
-        technologies: ['TypeScript', 'React Native', 'Firebase'],
-        links: [
-            { text: 'Google Play Store', url: 'https://play.google.com/store/apps/details?id=com.anonymous.gakdaSorumeKoltim' }
-        ]
-    },
-    {
-        title: 'E-KTM',
-        image: '/ektm-web.png',
-        description: 'Electronic Student Identity Card system for university administration. Streamlines card issuance and management with comprehensive dashboard.',
-        technologies: ['JavaScript', 'Express.js', 'MongoDB', 'React', 'React Native', 'Tailwind CSS'],
-        links: [
-            { text: 'API', url: 'https://github.com/maliefrr/ektm' },
-            { text: 'Frontend', url: 'https://github.com/maliefrr/ektmFrontend' },
-            { text: 'Android', url: 'https://github.com/maliefrr/ektmApp' }
-        ]
-    }
 ]
 
 export const skills = [
@@ -141,37 +106,37 @@ export const skills = [
 
 export const certifications = [
     {
-        title: 'Belajar Dasar Pemrograman JavaScript',
+        title: 'JavaScript Programming Fundamentals',
         issuer: 'Dicoding Indonesia',
         date: '2024',
         category: 'Programming'
     },
     {
-        title: 'Belajar Membuat Front-End Web untuk Pemula',
+        title: 'Front-End Web Development for Beginners',
         issuer: 'Dicoding Indonesia',
         date: '2024',
         category: 'Frontend'
     },
     {
-        title: 'Belajar Membuat Aplikasi Web dengan React',
+        title: 'Web Application Development with React',
         issuer: 'Dicoding Indonesia',
         date: '2024',
         category: 'Frontend'
     },
     {
-        title: 'Belajar Back-End Pemula dengan JavaScript',
+        title: 'Beginner Back-End Development with JavaScript',
         issuer: 'Dicoding Indonesia',
         date: '2024',
         category: 'Backend'
     },
     {
-        title: 'Belajar Fundamental Aplikasi Web dengan React',
+        title: 'Fundamental React Web Applications',
         issuer: 'Dicoding Indonesia',
         date: '2024',
         category: 'Frontend'
     },
     {
-        title: 'Belajar Fundamental Back-End dengan JavaScript',
+        title: 'Fundamental Back-End Development with JavaScript',
         issuer: 'Dicoding Indonesia',
         date: '2024',
         category: 'Backend'
@@ -195,10 +160,40 @@ export const certifications = [
         category: 'Networking'
     },
     {
-        title: 'CyberOps Associate',
+        title: 'Cisco CyberOps Associate',
         issuer: 'Cisco Networking Academy',
         date: '2024',
         category: 'Networking'
+    },
+    {
+        title: 'React Web Developer Expert',
+        issuer: 'Dicoding Indonesia',
+        date: '2024',
+        category: 'Frontend'
+    },
+    {
+        title: 'Web Programming Fundamentals',
+        issuer: 'Dicoding Indonesia',
+        date: '2026',
+        category: 'Programming'
+    },
+    {
+        title: 'AWS Cloud and Generative AI Fundamentals',
+        issuer: 'AWS Skill Builder',
+        date: '2026',
+        category: 'Cloud'
+    },
+    {
+        title: 'Introduction to Programming Logic (Programming Logic 101)',
+        issuer: 'Dicoding Indonesia',
+        date: '2026',
+        category: 'Programming'
+    },
+    {
+        title: 'Introduction to Programming for Software Development',
+        issuer: 'Dicoding Indonesia',
+        date: '2026',
+        category: 'Programming'
     }
 ]
 
