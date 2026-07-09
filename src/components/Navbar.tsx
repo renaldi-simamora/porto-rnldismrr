@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         className="text-xl text-white hover:text-[#c7d5e0] duration-300 cursor-pointer"
         onClick={() => handleItemClick(heroRef)}
       >
-        Moh Alief Rizky R
+        Renaldi Simamora
       </h1>
 
       {/* Desktop menu */}

@@ -41,6 +41,12 @@ interface ExperienceEntry {
   highlights: string[];
 }
 
+interface CompetencyGroup {
+  category: string;
+  items: string[];
+  accent: string;
+}
+
 /* ─────────────────────────────────────────────────
    DATA (hardcoded — synced with CV, July 2026)
 ───────────────────────────────────────────────── */
@@ -52,23 +58,28 @@ const EXPERIENCE: ExperienceEntry[] = [
     startDate: 'Jan 2026',
     endDate: 'Jul 2026',
     highlights: [
-      'Maintained and monitored ERP systems and web-based applications for stable performance',
-      'Developed and enhanced web features using Laravel, Blade, HTML, CSS, and JavaScript',
-      'Managed and validated application data with SQL to ensure accuracy and consistency',
-      'Provided first-level support, troubleshooting and documenting incidents with internal teams',
+      'Maintained and monitored ERP systems and web-based applications to ensure system stability and support business operations',
+      'Developed and enhanced web application features using Laravel, Blade, HTML, CSS, and JavaScript to improve usability and functionality',
+      'Assisted in updating application features, UI components, and system content based on business requirements',
+      'Managed and validated application data using SQL to ensure data accuracy, integrity, and consistency',
+      'Provided first-level technical support by troubleshooting application and system issues, including documenting and following up on incidents',
+      'Collaborated with developers and cross-functional teams to improve system performance, usability, and operational efficiency',
     ],
   },
   {
     jobTitle: 'Fullstack Web Developer',
     company: 'Dicoding Coding Camp × DBS Foundation 2026',
-    status: 'Coding Camp',
+    status: 'Coding Camp - Cohort',
     startDate: 'Feb 2026',
     endDate: 'Jul 2026',
     highlights: [
-      'Built responsive, interactive web applications using React and JavaScript',
-      'Built backend systems and REST APIs for authentication and data processing',
-      'Integrated MySQL and Firebase/Supabase databases for reliable app functionality',
-      'Applied SDLC principles and basic cloud deployment using AWS',
+      'Developed responsive and interactive web applications using React and modern JavaScript',
+      'Built backend systems and RESTful APIs for authentication and efficient data processing',
+      'Managed and integrated databases (MySQL, Firebase/Supabase) to ensure reliable and scalable application performance',
+      'Collaborated in fullstack development to ensure seamless integration across frontend, backend, and deployment',
+      'Performed debugging, troubleshooting, and testing (SIT/UAT) to maintain system stability and performance',
+      'Applied SDLC principles and implemented basic cloud deployment using AWS',
+      'Continuously learned and applied modern web development practices in a collaborative, project-based environment',
     ],
   },
 ];
@@ -91,6 +102,38 @@ const EDUCATION: EducationEntry[] = [
     endDate: '2023',
     description: 'Graduated with a focus on science and mathematics. Actively participated in extracurricular technology activities.',
     accent: '#00C8FF',
+  },
+];
+
+/* Key Competencies — from CV "KEY COMPETENCIES" section */
+const KEY_COMPETENCIES: CompetencyGroup[] = [
+  {
+    category: 'Development',
+    accent: '#C8FF00',
+    items: [
+      'Frontend Development (HTML, CSS, JavaScript, React, Next.js)',
+      'Backend Development (Laravel, REST API, Node.js - Basic)',
+      'Database Management (MySQL, Firebase, PostgreSQL)',
+      'UI/UX & Responsive Web Design',
+    ],
+  },
+  {
+    category: 'Support & Operations',
+    accent: '#00C8FF',
+    items: [
+      'Application Support & System Maintenance (Troubleshooting, Bug Fixing, Monitoring)',
+      'Website Maintenance & Feature Enhancement',
+      'Basic Linux Commands',
+      'Basic SEO & Web Content Management',
+    ],
+  },
+  {
+    category: 'Quality & Collaboration',
+    accent: '#FF00C8',
+    items: [
+      'Software Testing (SIT/UAT)',
+      'Team Collaboration & Communication',
+    ],
   },
 ];
 
@@ -248,29 +291,81 @@ function Typewriter({ strings }: { strings: string[] }) {
 function Navbar({ sections }: { sections: { label: string; ref: React.RefObject<HTMLDivElement | null> }[] }) {
   const [active, setActive] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
+
+  useEffect(() => {
+    if (!isBrowser) return;
+    const onResize = () => setIsCompact(window.innerWidth < 980);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 80);
     window.addEventListener('scroll', fn);
     return () => window.removeEventListener('scroll', fn);
   }, []);
+
   const go = (ref: React.RefObject<HTMLDivElement | null>, i: number) => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' }); setActive(i);
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    setActive(i);
+    setMenuOpen(false);
   };
+
   return (
-    <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled ? 'rgba(8,8,10,.92)' : 'transparent', backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none', borderBottom: scrolled ? '1px solid rgba(200,255,0,.08)' : 'none', transition: 'all .5s cubic-bezier(.4,0,.2,1)', padding: '0 clamp(1.5rem,5vw,4rem)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
-      <div style={{ fontFamily: "'Space Mono', monospace", color: '#C8FF00', fontSize: 15, fontWeight: 700, letterSpacing: 3 }}>RS</div>
-      <div style={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-        {sections.map((s, idx) => (
-          <button key={s.label} onClick={() => go(s.ref, idx)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: active === idx ? '#C8FF00' : 'rgba(180,190,200,.5)', fontSize: 11, fontWeight: 600, letterSpacing: 2, padding: '8px 14px', borderRadius: 4, fontFamily: "'Space Mono', monospace", transition: 'color .25s', position: 'relative' }}>
-            {s.label.toUpperCase()}
-            {active === idx && <div style={{ position: 'absolute', bottom: 2, left: '50%', transform: 'translateX(-50%)', width: 20, height: 1, background: '#C8FF00' }} />}
-          </button>
-        ))}
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 14px', border: '1px solid rgba(200,255,0,.2)', borderRadius: 50, fontSize: 11, fontFamily: "'Space Mono', monospace", color: 'rgba(200,255,0,.7)', letterSpacing: 1 }}>
-        <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#C8FF00', boxShadow: '0 0 8px #C8FF00', animation: 'pulse 2s ease-in-out infinite' }} />
-        AVAILABLE
-      </div>
+    <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled ? 'rgba(8,8,10,.92)' : 'transparent', backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none', borderBottom: scrolled ? '1px solid rgba(200,255,0,.08)' : 'none', transition: 'all .5s cubic-bezier(.4,0,.2,1)', padding: isCompact ? '0 1rem' : '0 clamp(1.5rem,5vw,4rem)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: isCompact ? 64 : 72 }}>
+      <button
+        type="button"
+        onClick={() => go(sections[0].ref, 0)}
+        style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#C8FF00', fontSize: isCompact ? 10 : 11, fontWeight: 700, letterSpacing: 2, fontFamily: "'Space Mono', monospace" }}
+      >
+        RENALDI SIMAMORA
+      </button>
+
+      {!isCompact && (
+        <div style={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
+          {sections.map((s, idx) => (
+            <button key={s.label} onClick={() => go(s.ref, idx)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: active === idx ? '#C8FF00' : 'rgba(180,190,200,.5)', fontSize: 11, fontWeight: 600, letterSpacing: 2, padding: '8px 14px', borderRadius: 4, fontFamily: "'Space Mono', monospace", transition: 'color .25s', position: 'relative' }}>
+              {s.label.toUpperCase()}
+              {active === idx && <div style={{ position: 'absolute', bottom: 2, left: '50%', transform: 'translateX(-50%)', width: 20, height: 1, background: '#C8FF00' }} />}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {isCompact && (
+        <button
+          type="button"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label="Toggle navigation menu"
+          style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(200,255,0,.25)', borderRadius: 10, color: '#C8FF00', padding: '7px 10px', fontSize: 10, fontFamily: "'Space Mono', monospace", letterSpacing: 1.4, cursor: 'pointer' }}
+        >
+          {menuOpen ? 'CLOSE' : 'MENU'}
+        </button>
+      )}
+
+      {!isCompact && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 14px', border: '1px solid rgba(200,255,0,.2)', borderRadius: 50, fontSize: 11, fontFamily: "'Space Mono', monospace", color: 'rgba(200,255,0,.7)', letterSpacing: 1 }}>
+          <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#C8FF00', boxShadow: '0 0 8px #C8FF00', animation: 'pulse 2s ease-in-out infinite' }} />
+          AVAILABLE
+        </div>
+      )}
+
+      {isCompact && menuOpen && (
+        <div style={{ position: 'absolute', top: 70, left: 12, right: 12, background: 'rgba(8,8,10,.98)', border: '1px solid rgba(200,255,0,.15)', borderRadius: 14, padding: 10, display: 'grid', gap: 4 }}>
+          {sections.map((s, idx) => (
+            <button
+              key={s.label}
+              onClick={() => go(s.ref, idx)}
+              style={{ textAlign: 'left', background: active === idx ? 'rgba(200,255,0,.08)' : 'transparent', border: '1px solid transparent', borderRadius: 10, cursor: 'pointer', color: active === idx ? '#C8FF00' : 'rgba(210,220,230,.82)', fontSize: 11, fontWeight: 600, letterSpacing: 1.2, padding: '10px 12px', fontFamily: "'Space Mono', monospace" }}
+            >
+              {s.label.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
@@ -301,6 +396,27 @@ function Section({ children, style }: { children: React.ReactNode; style?: React
   return (
     <div ref={ref} style={{ opacity: 0, ...style }}>
       {children}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────
+   KEY COMPETENCIES CARD
+───────────────────────────────────────────────── */
+function CompetencyCard({ group, index }: { group: CompetencyGroup; index: number }) {
+  const ref = useReveal<HTMLDivElement>({ delay: index * 0.1 });
+  return (
+    <div ref={ref} style={{ opacity: 0, background: 'rgba(255,255,255,.02)', border: '1px solid rgba(255,255,255,.06)', borderRadius: 18, padding: '1.8rem', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg,${group.accent},transparent)` }} />
+      <div style={{ fontSize: 10, color: group.accent, fontFamily: "'Space Mono',monospace", letterSpacing: 2, marginBottom: 16, textTransform: 'uppercase' }}>{group.category}</div>
+      <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {group.items.map((item) => (
+          <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 13.5, color: 'rgba(210,220,230,.75)', lineHeight: 1.6 }}>
+            <span style={{ color: group.accent, marginTop: 2, flexShrink: 0 }}>▹</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -459,7 +575,7 @@ function SkillItem({ skill }: { skill: typeof skills[0] }) {
   );
 }
 
-function TimelineItem({ item, index }: { item: ExperienceEntry; index: number }) {
+function TimelineItem({ item, index, mobile = false }: { item: ExperienceEntry; index: number; mobile?: boolean }) {
   const isLeft = index % 2 === 0;
   const accent = isLeft ? '#C8FF00' : '#00C8FF';
   const ref = useReveal<HTMLDivElement>({ delay: index * 0.12, x: isLeft ? -40 : 40, y: 20 });
@@ -488,6 +604,23 @@ function TimelineItem({ item, index }: { item: ExperienceEntry; index: number })
       )}
     </div>
   );
+
+  if (mobile) {
+    return (
+      <div ref={ref} style={{ opacity: 0, marginBottom: '1.4rem' }}>
+        <div style={{ display: 'flex', alignItems: 'stretch', gap: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 14 }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: accent, boxShadow: `0 0 14px ${accent}88` }} />
+            <div style={{ width: 1, flex: 1, minHeight: 28, background: 'rgba(255,255,255,.12)', marginTop: 8 }} />
+          </div>
+          <div style={{ flex: 1 }}>
+            {renderCard()}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div ref={ref} style={{ opacity: 0, display: 'grid', gridTemplateColumns: '1fr 40px 1fr', alignItems: 'start', marginBottom: '3rem' }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: 32 }}>
@@ -698,7 +831,7 @@ function CinematicOrbit({ items }: { items: { image: string; alt: string }[] }) 
         })}
 
         <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center', pointerEvents: 'none', zIndex: 2 }}>
-          <div style={{ fontSize: 10, letterSpacing: 4, color: 'rgba(200,255,0,.5)', fontFamily: "'Space Mono',monospace", marginBottom: 10 }}>SECTION 05</div>
+          <div style={{ fontSize: 10, letterSpacing: 4, color: 'rgba(200,255,0,.5)', fontFamily: "'Space Mono',monospace", marginBottom: 10 }}>SECTION 06</div>
           <div style={{ fontSize: 'clamp(18px,2.5vw,26px)', fontWeight: 800, color: '#F0F4F8', fontFamily: "'Space Grotesk',sans-serif", letterSpacing: -.5, lineHeight: 1.2 }}>Skills &<br />Tools</div>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#C8FF00', margin: '16px auto 0', boxShadow: '0 0 12px #C8FF00,0 0 24px rgba(200,255,0,.4)' }} />
         </div>
@@ -713,6 +846,7 @@ function CinematicOrbit({ items }: { items: { image: string; alt: string }[] }) 
 export default function App() {
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const compRef = useRef<HTMLDivElement>(null);
   const whatRef = useRef<HTMLDivElement>(null);
   const expRef = useRef<HTMLDivElement>(null);
   const projRef = useRef<HTMLDivElement>(null);
@@ -723,7 +857,6 @@ export default function App() {
 
   // Hero refs for the GSAP entrance timeline
   const heroBadgeRef = useRef<HTMLDivElement>(null);
-  const heroAvatarRef = useRef<HTMLDivElement>(null);
   const heroLine1Ref = useRef<HTMLHeadingElement>(null);
   const heroLine2Ref = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLDivElement>(null);
@@ -733,18 +866,29 @@ export default function App() {
   const navSections = [
     { label: 'Home', ref: heroRef },
     { label: 'About', ref: aboutRef },
+    { label: 'Competencies', ref: compRef },
     { label: 'What I Do', ref: whatRef },
     { label: 'Exp', ref: expRef },
     { label: 'Projects', ref: projRef },
-    { label: 'Skills', ref: skillsRef },
+    { label: 'Tools', ref: skillsRef },
     { label: 'Certs', ref: certRef },
     { label: 'Contact', ref: ctRef },
   ];
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (!isBrowser) return;
+    const onResize = () => setIsMobile(window.innerWidth < 900);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   // GSAP hero entrance timeline — runs once on mount, client-only.
   useIsoLayoutEffect(() => {
     if (!isBrowser) return;
-    const nodes = [heroBadgeRef.current, heroAvatarRef.current, heroLine1Ref.current, heroLine2Ref.current, heroSubRef.current, heroCtaRef.current, heroScrollRef.current];
+    const nodes = [heroBadgeRef.current, heroLine1Ref.current, heroLine2Ref.current, heroSubRef.current, heroCtaRef.current, heroScrollRef.current];
     if (nodes.some((n) => !n)) return;
 
     if (prefersReducedMotion()) {
@@ -755,8 +899,7 @@ export default function App() {
     const ctx = gsap.context(() => {
       gsap.set(nodes, { opacity: 0 });
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      tl.fromTo(heroAvatarRef.current, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.8 })
-        .fromTo(heroBadgeRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
+      tl.fromTo(heroBadgeRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 })
         .fromTo(heroLine1Ref.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.25')
         .fromTo(heroLine2Ref.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
         .fromTo(heroSubRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.35')
@@ -801,10 +944,14 @@ export default function App() {
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'linear-gradient(rgba(200,255,0,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(200,255,0,.02) 1px,transparent 1px)', backgroundSize: '80px 80px' }} />
 
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 900 }}>
-          <div ref={heroAvatarRef} style={{ position: 'relative', width: 120, height: 120, margin: '0 auto 3rem', animation: 'float 5s ease-in-out infinite' }}>
-            <div style={{ position: 'absolute', inset: -8, borderRadius: '50%', background: 'conic-gradient(#C8FF00,#00C8FF,#FF00C8,#C8FF00)', animation: 'rotate 4s linear infinite' }} />
-            <div style={{ position: 'absolute', inset: -3, borderRadius: '50%', background: 'conic-gradient(transparent 60%,rgba(200,255,0,.6) 80%,transparent)', animation: 'rotateCCW 6s linear infinite' }} />
-            <img src="/pass foto renaldi.jpeg" alt="Renaldi Simamora" style={{ width: 120, height: 120, borderRadius: '50%', objectFit: 'cover', position: 'relative', zIndex: 1, border: '3px solid #08080A', display: 'block' }} />
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+            <div style={{ width: 'clamp(96px,18vw,132px)', height: 'clamp(96px,18vw,132px)', borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, rgba(200,255,0,.95), rgba(0,200,255,.9))', boxShadow: '0 12px 40px rgba(0,0,0,.35)' }}>
+              <img
+                src="/pass%20foto%20renaldi.jpeg"
+                alt="Renaldi Simamora professional photo"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', border: '2px solid rgba(8,8,10,.7)', display: 'block' }}
+              />
+            </div>
           </div>
 
           <div ref={heroBadgeRef} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '6px 18px', borderRadius: 50, border: '1px solid rgba(200,255,0,.2)', background: 'rgba(200,255,0,.05)', fontSize: 11, fontFamily: "'Space Mono',monospace", color: 'rgba(200,255,0,.7)', letterSpacing: 3, marginBottom: 24 }}>
@@ -879,11 +1026,23 @@ export default function App() {
         </div>
       </section>
 
-      {/* ══ WHAT I DO ══ */}
-      <section ref={whatRef} style={{ padding: '8rem clamp(1.5rem,5vw,4rem)', background: 'rgba(255,255,255,.01)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
+      {/* ══ KEY COMPETENCIES ══ */}
+      <section ref={compRef} style={{ padding: '8rem clamp(1.5rem,5vw,4rem)', background: 'rgba(255,255,255,.01)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <Section>
-            <SectionHeading index="02">What I Do</SectionHeading>
+            <SectionHeading index="02">Key Competencies</SectionHeading>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '1.5rem' }}>
+              {KEY_COMPETENCIES.map((group, i) => (<CompetencyCard key={group.category} group={group} index={i} />))}
+            </div>
+          </Section>
+        </div>
+      </section>
+
+      {/* ══ WHAT I DO ══ */}
+      <section ref={whatRef} style={{ padding: '8rem clamp(1.5rem,5vw,4rem)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <Section>
+            <SectionHeading index="03">What I Do</SectionHeading>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: '1.5rem' }}>
               {WHAT_I_DO.map((item, i) => (<WhatIDoCard key={item.title} item={item} index={i} />))}
             </div>
@@ -895,10 +1054,10 @@ export default function App() {
       <section ref={expRef} style={{ padding: '8rem clamp(1.5rem,5vw,4rem)', background: 'rgba(255,255,255,.01)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
           <Section>
-            <SectionHeading index="03">Experience</SectionHeading>
+            <SectionHeading index="04">Experience</SectionHeading>
             <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, background: 'linear-gradient(to bottom,transparent,rgba(200,255,0,.15) 15%,rgba(200,255,0,.15) 85%,transparent)', transform: 'translateX(-50%)' }} />
-              {EXPERIENCE.map((item, index) => (<TimelineItem key={item.company} item={item} index={index} />))}
+              {!isMobile && <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, background: 'linear-gradient(to bottom,transparent,rgba(200,255,0,.15) 15%,rgba(200,255,0,.15) 85%,transparent)', transform: 'translateX(-50%)' }} />}
+              {EXPERIENCE.map((item, index) => (<TimelineItem key={item.company} item={item} index={index} mobile={isMobile} />))}
             </div>
           </Section>
         </div>
@@ -908,7 +1067,7 @@ export default function App() {
       <section ref={projRef} style={{ padding: '8rem clamp(1.5rem,5vw,4rem)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <Section>
-            <SectionHeading index="04">Selected Work</SectionHeading>
+            <SectionHeading index="05">Selected Work / Projects</SectionHeading>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: '1.5rem' }}>
               {projects.map((project, index) => (<ProjectCard key={project.title} project={project} index={index} />))}
             </div>
@@ -921,11 +1080,11 @@ export default function App() {
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
           <Section>
             <div style={{ fontSize: 11, letterSpacing: 5, color: '#C8FF00', fontFamily: "'Space Mono',monospace", marginBottom: 12, display: 'flex', alignItems: 'center', gap: 16 }}>
-              <div style={{ width: 32, height: 1, background: '#C8FF00' }} />SECTION 05
+              <div style={{ width: 32, height: 1, background: '#C8FF00' }} />SECTION 06
             </div>
             <h2 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 800, color: '#F0F4F8', margin: '0 0 5rem', fontFamily: "'Space Grotesk',sans-serif", letterSpacing: -2, lineHeight: 1.1 }}>Skills & Tools</h2>
-            <CinematicOrbit items={skills} />
-            <div style={{ marginTop: '3rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(120px,1fr))', gap: '1rem' }}>
+            {!isMobile && <CinematicOrbit items={skills} />}
+            <div style={{ marginTop: isMobile ? '0' : '3rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(120px,1fr))', gap: '1rem' }}>
               {skills.map(skill => (<SkillItem key={skill.alt} skill={skill} />))}
             </div>
           </Section>
@@ -936,7 +1095,7 @@ export default function App() {
       <section ref={certRef} style={{ padding: '8rem clamp(1.5rem,5vw,4rem)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <Section>
-            <SectionHeading index="06">Certifications</SectionHeading>
+            <SectionHeading index="07">Certifications</SectionHeading>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '1.5rem' }}>
               {certifications.map((cert, i) => (<CertCard key={cert.title} cert={cert} index={i} />))}
             </div>
@@ -948,7 +1107,7 @@ export default function App() {
       <section ref={eduRef} style={{ padding: '8rem clamp(1.5rem,5vw,4rem)', background: 'rgba(255,255,255,.01)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
           <Section>
-            <SectionHeading index="07">Education</SectionHeading>
+            <SectionHeading index="08">Education</SectionHeading>
             <div style={{ display: 'grid', gap: '2rem' }}>
               {EDUCATION.map(edu => (<EducationCard key={edu.institution} edu={edu} />))}
             </div>
@@ -961,7 +1120,7 @@ export default function App() {
         <div style={{ position: 'absolute', bottom: -40, left: '50%', transform: 'translateX(-50%)', fontSize: 'clamp(80px,18vw,220px)', fontWeight: 900, color: 'rgba(255,255,255,.015)', fontFamily: "'Space Mono',monospace", whiteSpace: 'nowrap', letterSpacing: -8, userSelect: 'none', pointerEvents: 'none', lineHeight: 1 }}>CONTACT</div>
         <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center', position: 'relative' }}>
           <Section>
-            <SectionHeading index="08">Let's Connect</SectionHeading>
+            <SectionHeading index="09">Let's Connect</SectionHeading>
             <p style={{ color: 'rgba(180,190,200,.55)', fontSize: 16, lineHeight: 1.8, maxWidth: 460, margin: '0 auto 3.5rem' }}>
               Have a project in mind or want to collaborate? My inbox is always open.
             </p>

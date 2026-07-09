@@ -40,6 +40,7 @@ export const projects = [
         ],
         links: [
             { text: 'Live Demo', url: 'https://budgetly-dbs.vercel.app/' },
+            { text: 'QA Docs (Google Drive)', url: 'https://drive.google.com/drive/folders/1uVwjfoToxzpS-HxV9V9BbJc7acKbB6Mk' },
             { text: 'GitHub', url: '#' }
         ]
     },
