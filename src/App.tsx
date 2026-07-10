@@ -91,7 +91,7 @@ const EDUCATION: EducationEntry[] = [
     institution: 'IPB University',
     startDate: '2023',
     endDate: '2027 (Expected)',
-    description: 'GPA 3.46. Focus on Hardware-Software Integration, Embedded Systems, and IoT Development.',
+    description: 'GPA 3.55 Focus on Hardware-Software Integration, Embedded Systems, and IoT Development.',
     accent: '#C8FF00',
   },
   {
@@ -1002,7 +1002,7 @@ export default function App() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '2rem', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,.05)' }}>
                   <StatItem value="3" label="Projects Shipped" />
                   <StatItem value="15+" label="Certifications" />
-                  <StatItem value="3.46" label="GPA" />
+                  <StatItem value="3.55" label="GPA" />
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>

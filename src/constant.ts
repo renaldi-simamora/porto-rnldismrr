@@ -40,8 +40,8 @@ export const projects = [
         ],
         links: [
             { text: 'Live Demo', url: 'https://budgetly-dbs.vercel.app/' },
-            { text: 'QA Docs (Google Drive)', url: 'https://drive.google.com/drive/folders/1uVwjfoToxzpS-HxV9V9BbJc7acKbB6Mk' },
-            { text: 'GitHub', url: '#' }
+            { text: 'Figma', url: 'https://www.figma.com/design/EPVtbfv5fNkAsv8r9C4dVN/Untitled?node-id=0-1&p=f' },
+            { text: 'GitHub', url: 'https://github.com/CC26-PSU168' }
         ]
     },
     {
@@ -56,7 +56,7 @@ export const projects = [
         ],
         links: [
             { text: 'Live Demo', url: 'https://buahkita.vercel.app/' },
-            { text: 'GitHub', url: '#' }
+            { text: 'GitHub', url: 'https://github.com/ahmdfariiss/fruit-supplier' }
         ]
     },
     {
