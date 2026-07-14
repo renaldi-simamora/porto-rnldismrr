@@ -502,7 +502,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
               {expanded ? 'Tutup detail' : 'Klik untuk lihat detail project'}
             </div>
           </button>
-          <div style={{ maxHeight: expanded ? 320 : 0, opacity: expanded ? 1 : 0, overflow: 'hidden', transition: 'max-height .35s ease, opacity .25s ease', marginBottom: expanded ? '1.2rem' : 0 }}>
+          <div style={{ maxHeight: expanded ? 1000 : 0, opacity: expanded ? 1 : 0, overflow: 'hidden', transition: 'max-height .35s ease, opacity .25s ease', marginBottom: expanded ? '1.2rem' : 0 }}>
             <div style={{ display: 'grid', gap: 10, paddingTop: expanded ? 2 : 0 }}>
               {(project.details ?? []).map((detail) => (
                 <div key={detail.label} style={{ padding: '12px 14px', borderRadius: 14, background: 'rgba(255,255,255,.02)', border: '1px solid rgba(255,255,255,.06)' }}>
@@ -510,6 +510,16 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                   <div style={{ color: 'rgba(240,244,248,.72)', fontSize: 13, lineHeight: 1.7 }}>{detail.text}</div>
                 </div>
               ))}
+              {('qaImage' in project && project.qaImage) && (
+                <div style={{ padding: '12px 14px', borderRadius: 14, background: 'rgba(255,255,255,.02)', border: '1px solid rgba(255,255,255,.06)' }}>
+                  <div style={{ fontSize: 10, color: '#C8FF00', fontFamily: "'Space Mono',monospace", letterSpacing: 2, marginBottom: 8, textTransform: 'uppercase' }}>QA Testing Summary</div>
+                  <div style={{ borderRadius: 8, overflow: 'hidden', background: 'rgba(0,0,0,0.2)' }}>
+                    <a href={project.qaImage as string} target="_blank" rel="noopener noreferrer">
+                      <img src={project.qaImage as string} alt="QA Testing Summary" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: '1.2rem' }}>

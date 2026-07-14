@@ -28,6 +28,16 @@ import { projects } from '../constant'
                       <span>{detail.text}</span>
                     </div>
                   ))}
+                  {('qaImage' in p && p.qaImage) && (
+                    <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;">
+                      <strong style="display:block; color:#9bdc2a; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px;">QA Testing Summary</strong>
+                      <div style="border-radius:8px; overflow:hidden; background:rgba(0,0,0,0.2);">
+                        <a href={p.qaImage} target="_blank" rel="noopener noreferrer">
+                          <img src={p.qaImage} alt="QA Testing Summary" style="width:100%; height:auto; display:block;" />
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </details>
               <div style="display:flex; flex-wrap:wrap; gap:8px;">

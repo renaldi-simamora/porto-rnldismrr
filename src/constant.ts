@@ -32,31 +32,38 @@ export const projects = [
         title: 'BudgetLy',
         image: '/budgetly.png',
         description: 'Financial management web application for students.',
-        technologies: ['React', 'TypeScript', 'REST API', 'PostgreSQL', 'Tailwind CSS'],
+        technologies: ['React', 'TypeScript', 'REST API', 'PostgreSQL', 'Tailwind CSS', 'Jira (QA)', 'Manual Testing (QA)'],
+        qaImage: '/budgetly-qa.png',
         details: [
             { label: 'Keterangan', text: 'Aplikasi web finansial untuk membantu pencatatan transaksi, budgeting, dan savings management.' },
             { label: 'Teknologi', text: 'React dan TypeScript untuk antarmuka, REST API untuk integrasi data, PostgreSQL untuk penyimpanan, dan Tailwind CSS untuk styling.' },
             { label: 'Tujuan', text: 'Membantu pengguna mengelola keuangan pribadi secara lebih terstruktur dan mudah dipantau.' },
+            { label: 'QA Testing', text: 'Perancangan dan eksekusi 65 skenario pengujian komprehensif pada modul Landing Page (6 TC), Register (14 TC), Login (12 TC), Tambah Transaksi (15 TC), Edit Transaksi (10 TC), dan Delete Transaksi (8 TC) menggunakan Jira Software.' }
         ],
         links: [
             { text: 'Live Demo', url: 'https://budgetly-dbs.vercel.app/' },
             { text: 'Figma', url: 'https://www.figma.com/design/EPVtbfv5fNkAsv8r9C4dVN/Untitled?node-id=0-1&p=f' },
-            { text: 'GitHub', url: 'https://github.com/CC26-PSU168' }
+            { text: 'GitHub', url: 'https://github.com/CC26-PSU168' },
+            { text: 'QA Doc (Drive)', url: 'https://drive.google.com/drive/folders/1uVwjfoToxzpS-HxV9V9BbJc7acKbB6Mk' },
+            { text: 'QA Summary (Image)', url: '/budgetly-qa.png' }
         ]
     },
     {
         title: 'BuahKita',
         image: '/buahkita.png',
         description: 'IoT-based fruit quality detection system with real-time monitoring.',
-        technologies: ['ESP32', 'React', 'Node.js', 'PostgreSQL', 'Arduino IDE'],
+        technologies: ['ESP32', 'React', 'Node.js', 'PostgreSQL', 'Arduino IDE', 'Integration Testing (QA)', 'UAT'],
+
         details: [
             { label: 'Keterangan', text: 'Sistem IoT untuk memantau kualitas buah secara real time melalui sensor dan dashboard web.' },
             { label: 'Teknologi', text: 'ESP32 membaca sensor, React menampilkan data, Node.js menjadi backend, dan Firebase dipakai untuk penyimpanan serta sinkronisasi data.' },
             { label: 'Tujuan', text: 'Memberikan gambaran kondisi buah dari data sensor agar proses pemantauan lebih cepat dan konsisten.' },
+            { label: 'QA Testing', text: 'System Integration Testing untuk data stream dari sensor ESP32, UAT pada visualisasi dashboard web, validasi API payload, dan penanganan recovery saat koneksi terputus.' }
         ],
         links: [
             { text: 'Live Demo', url: 'https://buahkita.vercel.app/' },
-            { text: 'GitHub', url: 'https://github.com/ahmdfariiss/fruit-supplier' }
+            { text: 'GitHub', url: 'https://github.com/ahmdfariiss/fruit-supplier' },
+            { text: 'QA Doc (Drive)', url: 'https://drive.google.com/drive/folders/1tIZejlu5171kn1YbJK7NN-iDb6OchPqd' }
         ]
     },
     {
@@ -102,7 +109,7 @@ export const skills = [
     { image: '/express.png', alt: 'Express.js', category: 'Backend' },
     { image: '/php.jpg', alt: 'PHP', category: 'Backend' },
     { image: '/c++.png', alt: 'C++', category: 'IoT' },
-    { image: '/img/python.svg', alt: 'Python', category: 'Backend' },
+    { image: '/python.jpg', alt: 'Python', category: 'Backend' },
 ]
 
 export const certifications = [
